@@ -4,6 +4,8 @@
 
 ## Running locally
 
+(Update: nevermind, looks like http is fine)
+
 - Aframe in VR mode can only be run from https, due to the
   security requirements to access xr related sensors.
 - Setting up https for localhost in sveltekit: https://stackoverflow.com/a/76525335
