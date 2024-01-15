@@ -14,8 +14,6 @@
     <img id="right" src="/right.jpg">
   </a-assets>
 
-  <a-entity camera look-controls position="0 0 0" stereocam="eye:left;"></a-entity>
-
   <a-sky id="sky1" src="#left" stereo="eye:left"></a-sky>
   <a-sky id="sky2" src="#right" stereo="eye:right"></a-sky>
 </a-scene>
