@@ -1,38 +1,23 @@
-# create-svelte
+## Examples
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/main/packages/create-svelte).
+- https://svelte.dev/repl/ca752eeacbd74e4692b9fbbce38fa4fa?version=3.29.4
 
-## Creating a project
+## Running locally
 
-If you're seeing this, you've probably already done this step. Congrats!
+- Aframe in VR mode can only be run from https, due to the
+  security requirements to access xr related sensors.
+- Setting up https for localhost in sveltekit: https://stackoverflow.com/a/76525335
 
-```bash
-# create a new project in the current directory
-npm create svelte@latest
+## References
 
-# create a new project in my-app
-npm create svelte@latest my-app
-```
+- https://github.com/oscarmarinmiro/aframe-stereo-component
+- https://github.com/natmeow/racoon-webxr-viewer
+  - Demo at https://racoon-webxr-viewer.vercel.app/
+  - Demo photo at https://racoon-webxr-viewer.vercel.app/view.html?c=33hl09
+- svelte state example: https://svelte.dev/repl/ca752eeacbd74e4692b9fbbce38fa4fa?version=3.29.4
 
-## Developing
+## VR Button not on:
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
-
-```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
-```
-
-## Building
-
-To create a production version of your app:
-
-```bash
-npm run build
-```
-
-You can preview the production build with `npm run preview`.
-
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+- https://aframe.glitch.me/ doesn't work
+- https://vr-jpg-viewer-hjj9p8gzc-bmitchinson.vercel.app/vrtest.html doesn't work
+- **does** work https://racoon-webxr-viewer.vercel.app/view.html?c=33hl09
