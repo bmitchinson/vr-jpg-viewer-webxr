@@ -1,6 +1,14 @@
 <script>
-	let mute = true;
+	import SkyboxIdea from '$lib/ideas/SkyboxIdea.svelte';
+	import CurvedImageIdea from '$lib/ideas/CurvedImageIdea.svelte';
 
+	const defaultIdea = 1;
+	let ideaIndex = defaultIdea;
+	const setIdea = (/** @type {number} */ desiredIdeaIndex) => {
+		ideaIndex = desiredIdeaIndex;
+	};
+
+	let mute = true;
 	const muteBtnPress = () => {
 		mute = !mute;
 	};
@@ -17,25 +25,49 @@
 
 <div class="controls">
 	<label>
-		<input type="button" value={mute ? 'unmute' : 'mute'} on:click={muteBtnPress} />
+		<input
+			type="button"
+			value={mute ? 'unmute' : 'mute'}
+			class={mute ? '' : 'active'}
+			on:click={muteBtnPress}
+		/>
+	</label>
+	<label>
+		<input
+			type="button"
+			value="skybox 1"
+			class={ideaIndex == 0 ? 'active' : ''}
+			on:click={() => setIdea(0)}
+		/>
+	</label>
+	<label>
+		<input
+			type="button"
+			value="curved 1"
+			class={ideaIndex == 1 ? 'active' : ''}
+			on:click={() => setIdea(1)}
+		/>
 	</label>
 </div>
+<!-- todo: disable wasd -->
 
 <a-scene>
 	<a-assets>
-		<!-- svelte-ignore a11y-missing-attribute -->
-		<img id="left" src="/left.jpg" />
-		<!-- svelte-ignore a11y-missing-attribute -->
-		<img id="right" src="/right.jpg" />
-
-		<audio id="recording" src="/audio.mp4" preload="auto"></audio>
+		<audio id="recording-asset" src="/audio.mp4" preload="auto"></audio>
+		<img id="blur-sky-asset" src="/skybox_sample_blur.jpg" />
+		<img id="left-strip-asset" src="/left_no_boundaries.jpg" />
+		<img id="right-strip-asset" src="/right_no_boundaries.jpg" />
+		<img id="left-equir-asset" src="/left_equirectangular.jpg" />
+		<img id="right-equir-asset" src="/right_equirectangular.jpg" />
 	</a-assets>
 
-	<a-sky id="sky1" src="#left" stereo="eye:left"></a-sky>
-	<a-sky id="sky2" src="#right" stereo="eye:right"></a-sky>
-
-	<a-entity id="mute-btn" geometry="primitive: box" material="color: blue" position="0 0 2"
-	></a-entity>
+	<!-- ensure idea asset elements don't overlap IDs -->
+	{#if ideaIndex == 0}
+		<SkyboxIdea />
+	{/if}
+	{#if ideaIndex == 1}
+		<CurvedImageIdea />
+	{/if}
 
 	{#if !mute}
 		<a-entity
@@ -43,7 +75,7 @@
 			geometry="primitive: plane"
 			material="color: blue"
 			position="0 0 0"
-			sound="src: #recording; autoplay: true; loop: true"
+			sound="src: #recording-asset; autoplay: true; loop: true"
 		></a-entity>
 	{/if}
 </a-scene>
@@ -59,5 +91,9 @@
 	input {
 		height: 2em;
 		width: 5em;
+	}
+
+	.active {
+		background-color: lightskyblue;
 	}
 </style>
