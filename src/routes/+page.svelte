@@ -1,6 +1,7 @@
 <script>
 	import SkyboxIdea from '$lib/ideas/SkyboxIdea.svelte';
 	import CurvedImageIdea from '$lib/ideas/CurvedImageIdea.svelte';
+	import SkyboxCompressedIdea from '$lib/ideas/SkyboxCompressedIdea.svelte';
 
 	const defaultIdea = 1;
 	let ideaIndex = defaultIdea;
@@ -48,25 +49,27 @@
 			on:click={() => setIdea(1)}
 		/>
 	</label>
+	<label>
+		<input
+			type="button"
+			value="skybox 2"
+			class={ideaIndex == 2 ? 'active' : ''}
+			on:click={() => setIdea(2)}
+		/>
+	</label>
 </div>
 <!-- todo: disable wasd -->
 
 <a-scene>
-	<a-assets>
-		<audio id="recording-asset" src="/audio.mp4" preload="auto"></audio>
-		<img id="blur-sky-asset" src="/skybox_sample_blur.jpg" />
-		<img id="left-strip-asset" src="/left_no_boundaries.jpg" />
-		<img id="right-strip-asset" src="/right_no_boundaries.jpg" />
-		<img id="left-equir-asset" src="/left_equirectangular.jpg" />
-		<img id="right-equir-asset" src="/right_equirectangular.jpg" />
-	</a-assets>
-
 	<!-- ensure idea asset elements don't overlap IDs -->
-	{#if ideaIndex == 0}
+	<!-- {#if ideaIndex == 0}
 		<SkyboxIdea />
-	{/if}
+	{/if} -->
 	{#if ideaIndex == 1}
 		<CurvedImageIdea />
+	{/if}
+	{#if ideaIndex == 2}
+		<SkyboxCompressedIdea />
 	{/if}
 
 	{#if !mute}

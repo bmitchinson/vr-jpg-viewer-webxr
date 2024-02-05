@@ -1,3 +1,9 @@
+<a-assets>
+	<img id="blur-sky-asset" src="/skybox_sample_blur.jpg" />
+	<img id="left-strip-asset" src="/left_no_boundaries.jpg" />
+	<img id="right-strip-asset" src="/right_no_boundaries.jpg" />
+</a-assets>
+
 <a-sky id="blur-sky" src="#blur-sky-asset"></a-sky>
 
 <a-curvedimage

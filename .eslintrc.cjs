@@ -11,5 +11,9 @@ module.exports = {
 		browser: true,
 		es2017: true,
 		node: true
+	},
+	rules: {
+		// this isn't affecting the build result, why
+		'a11y-missing-attribute': ['off']
 	}
 };
