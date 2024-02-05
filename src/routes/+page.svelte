@@ -3,8 +3,14 @@
 	import CurvedImageIdea from '$lib/ideas/CurvedImageIdea.svelte';
 	import SkyboxCompressedIdea from '$lib/ideas/SkyboxCompressedIdea.svelte';
 
-	const defaultIdea = 1;
-	let ideaIndex = defaultIdea;
+	// ensure idea asset elements don't overlap IDs
+	let ideaIndex = 0;
+	const ideas = [
+		{ name: 'curved 1', comp: CurvedImageIdea },
+		{ name: 'skybox 2', comp: SkyboxCompressedIdea },
+		{ name: 'skybox 1', comp: SkyboxIdea }
+	];
+
 	const setIdea = (/** @type {number} */ desiredIdeaIndex) => {
 		ideaIndex = desiredIdeaIndex;
 	};
@@ -17,12 +23,12 @@
 	document.querySelector('#refresh-button')?.addEventListener('click', muteBtnPress);
 </script>
 
+<!-- todo: stereo throws console errors trying to reference AFRAME -->
+<!-- todo: "multiple instances of AFRAME being imported" -->
 <svelte:head>
 	<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 	<script src="/aframe-stereo-component.min.js"></script>
 </svelte:head>
-<!-- todo: stereo throws console errors trying to reference AFRAME -->
-<!-- todo: "multiple instances of AFRAME being imported" -->
 
 <div class="controls">
 	<label>
@@ -33,44 +39,21 @@
 			on:click={muteBtnPress}
 		/>
 	</label>
-	<label>
-		<input
-			type="button"
-			value="skybox 1"
-			class={ideaIndex == 0 ? 'active' : ''}
-			on:click={() => setIdea(0)}
-		/>
-	</label>
-	<label>
-		<input
-			type="button"
-			value="curved 1"
-			class={ideaIndex == 1 ? 'active' : ''}
-			on:click={() => setIdea(1)}
-		/>
-	</label>
-	<label>
-		<input
-			type="button"
-			value="skybox 2"
-			class={ideaIndex == 2 ? 'active' : ''}
-			on:click={() => setIdea(2)}
-		/>
-	</label>
+	{#each ideas as idea, i}
+		<label>
+			<input
+				type="button"
+				value={idea.name}
+				class={ideaIndex == i ? 'active' : ''}
+				on:click={() => setIdea(i)}
+			/>
+		</label>
+	{/each}
 </div>
 <!-- todo: disable wasd -->
 
 <a-scene>
-	<!-- ensure idea asset elements don't overlap IDs -->
-	<!-- {#if ideaIndex == 0}
-		<SkyboxIdea />
-	{/if} -->
-	{#if ideaIndex == 1}
-		<CurvedImageIdea />
-	{/if}
-	{#if ideaIndex == 2}
-		<SkyboxCompressedIdea />
-	{/if}
+	<svelte:component this={ideas[ideaIndex].comp} />
 
 	{#if !mute}
 		<a-entity
