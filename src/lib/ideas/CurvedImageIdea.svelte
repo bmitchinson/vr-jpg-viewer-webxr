@@ -1,3 +1,11 @@
+<script>
+	let height = 10;
+	let radius = 8;
+	let thetaLength = 360;
+	let thetaStart = 0;
+	let position = '0 2 0';
+</script>
+
 <a-assets>
 	<img id="blur-sky-asset" src="/skybox_sample_blur.jpg" />
 	<img id="left-strip-asset" src="/left_no_boundaries.jpg" />
@@ -9,16 +17,18 @@
 <a-curvedimage
 	src="#left-strip-asset"
 	stereo="eye:left"
-	height="10"
-	radius="8"
-	theta-length="360"
-	position="0 2 0"
+	{height}
+	{radius}
+	theta-length={thetaLength}
+	theta-start={thetaStart}
+	{position}
 ></a-curvedimage>
 <a-curvedimage
 	src="#right-strip-asset"
 	stereo="eye:right"
-	height="10"
-	radius="8"
-	theta-length="360"
-	position="0 2 0"
+	{height}
+	{radius}
+	theta-length={thetaLength}
+	theta-start={thetaStart}
+	{position}
 ></a-curvedimage>
