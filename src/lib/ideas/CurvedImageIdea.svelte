@@ -4,6 +4,7 @@
 	let thetaLength = 360;
 	let thetaStart = 0;
 	let position = '0 2 0';
+	let animation = 'property: rotation; to: 0 360 0; loop: true; dur: 50000; easing: linear';
 </script>
 
 <a-assets>
@@ -22,6 +23,7 @@
 	theta-length={thetaLength}
 	theta-start={thetaStart}
 	{position}
+	{animation}
 ></a-curvedimage>
 <a-curvedimage
 	src="#right-strip-asset"
@@ -31,4 +33,5 @@
 	theta-length={thetaLength}
 	theta-start={thetaStart}
 	{position}
+	{animation}
 ></a-curvedimage>
