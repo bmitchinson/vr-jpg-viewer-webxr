@@ -4,12 +4,16 @@
 	const muteBtnPress = () => {
 		mute = !mute;
 	};
+
+	document.querySelector('#refresh-button')?.addEventListener('click', muteBtnPress);
 </script>
 
 <svelte:head>
 	<script src="https://aframe.io/releases/1.5.0/aframe.min.js"></script>
 	<script src="/aframe-stereo-component.min.js"></script>
 </svelte:head>
+<!-- todo: stereo throws console errors trying to reference AFRAME -->
+<!-- todo: "multiple instances of AFRAME being imported" -->
 
 <div class="controls">
 	<label>
@@ -29,6 +33,9 @@
 
 	<a-sky id="sky1" src="#left" stereo="eye:left"></a-sky>
 	<a-sky id="sky2" src="#right" stereo="eye:right"></a-sky>
+
+	<a-entity id="mute-btn" geometry="primitive: box" material="color: blue" position="0 0 2"
+	></a-entity>
 
 	{#if !mute}
 		<a-entity
